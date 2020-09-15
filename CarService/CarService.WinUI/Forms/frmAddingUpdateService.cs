@@ -174,7 +174,7 @@ namespace CarService.WinUI.Forms
         {
             if (string.IsNullOrWhiteSpace(txtServiceTime.Text)||!int.TryParse(txtServiceTime.Text,out int value))
             {
-                
+                e.Cancel = true;
                 errorProvider.SetError(txtServiceTime, "Obavezno polje!Dozvoljen unos brojeva samo!");
             }
             else
