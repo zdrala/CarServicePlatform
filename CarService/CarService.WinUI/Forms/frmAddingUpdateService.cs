@@ -42,17 +42,27 @@ namespace CarService.WinUI.Forms
                         }
                     }
                 }
+                if (txtServiceName.Text.Length == 0)
+                    return;
+                if (txtServicePrice.Text.Length == 0)
+                    return;
 
+                if (txtDescription.Text.Length == 0)
+                    return;
+                if (txtServiceTime.Text.Length == 0)
+                    return;
 
 
                 var request = new ServicesInsertUpdateRequest()
                 {
                     ServiceName = txtServiceName.Text,
-                    ServicePrice = double.Parse(txtServicePrice.Text.ToString()),
+                   
                     Description = txtDescription.Text,
                     ServiceTime = txtServiceTime.Text,
                     CarServiceID = _CarServiceID.Value
                 };
+                if (txtServicePrice.Text.Length>0)
+                    request.ServicePrice = double.Parse(txtServicePrice.Text.ToString());
                 Data.Model.Services entity = null;
                 if (!_ServiceID.HasValue)
                 {

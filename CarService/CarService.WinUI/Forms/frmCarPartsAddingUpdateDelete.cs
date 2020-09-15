@@ -118,7 +118,10 @@ namespace CarService.WinUI.Forms
            
             if (this.ValidateChildren())
             {
-               
+                if (txtName.Text.Length == 0)
+                    return;
+                if (txtPrice.Text.Length == 0)
+                    return;
 
                 var idCategoryObj = cmbPartsCategory.SelectedValue;
                 var idSubCategoryObj = cmbPartsSubCategory.SelectedValue;
