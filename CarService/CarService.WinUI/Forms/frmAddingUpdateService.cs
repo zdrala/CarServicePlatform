@@ -32,13 +32,15 @@ namespace CarService.WinUI.Forms
 
                 foreach (var x in list)
                 {
-                    
-                    if (x.ServiceName.ToLower() == txtServiceName.Text.ToLower()&&x.ServiceID!=_ServiceID)
+
+                    if (txtServiceName.Text != null)
                     {
-                        MessageBox.Show("Usluga sa nazivom: "+txtServiceName.Text+" već postoji na listi!", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        if (x.ServiceName.ToLower() == txtServiceName.Text.ToLower() && x.ServiceID != _ServiceID)
+                        {
+                            MessageBox.Show("Usluga sa nazivom: " + txtServiceName.Text + " već postoji na listi!", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
-              
                 }
 
 
