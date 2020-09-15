@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             xmlns:converters="clr-namespace:CarService.MobileApp.Converters"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.CarServicesPage">
+    <ContentPage.BindingContext >
+        <vm:CarServicesViewModel></vm:CarServicesViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+   
+        <StackLayout>
+            <Label Text="Preporučeni auto servisi" HorizontalOptions="Center" Font="Bold,22"></Label>
+            <ListView  SeparatorColor="Black" ItemsSource="{Binding recommendCarServices}" BackgroundColor="LightGray" ItemSelected="CarServiceSelected">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout Padding="20,0,0,0" >
+                                    <Image HeightRequest="150" WidthRequest="170" Source="{Binding Photo, Converter={StaticResource imgConv}}"></Image>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="1">
+                                    <Label Text="{Binding CarServiceName}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="16" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Street}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" HorizontalOptions="Center"/>
+                                </StackLayout>
+                                <StackLayout Margin="35,0,0,0" VerticalOptions="Center" Orientation="Vertical">
+                                    <Image HorizontalOptions="Center" HeightRequest="50" WidthRequest="50" Source="recommendationStar.png"></Image>
+                                    <Label HorizontalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding PositiveDifferent}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                </ListView>
+            <Label Margin="0,15,0,0" Text="Ostali auto servisi" HorizontalOptions="Center" Font="Bold,22"></Label>
+            <ListView  SeparatorColor="Black" ItemsSource="{Binding others}" BackgroundColor="LightGray" ItemSelected="CarServiceSelected">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout Padding="20,0,0,0" >
+                                    <Image HeightRequest="150" WidthRequest="170" Source="{Binding Photo, Converter={StaticResource imgConv}}"></Image>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Row="1">
+                                    <Label Text="{Binding CarServiceName}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="16" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Street}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

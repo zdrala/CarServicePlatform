@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.RegisterUserPage">
+    <ContentPage.BindingContext >
+        <vm:RegisterViewModel></vm:RegisterViewModel>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10" VerticalOptions="CenterAndExpand">
+            <Label Text="Napravi profil u eMechanic" FontAttributes="Bold"  FontSize="Title" HorizontalOptions="CenterAndExpand"></Label>
+            <Label Text="Ime"></Label>
+            <Entry Text="{Binding FirstName}"></Entry>
+            <Label Text="Prezime"></Label>
+            <Entry Text="{Binding LastName}"></Entry>
+            <Label Text="Datum rođenja"></Label>
+            <DatePicker Date="{Binding DateOfBirth}" Format="dd-MM-yyyy" ></DatePicker>
+            <Label Text="Odaberi grad prebivališta"></Label>
+            <Picker ItemsSource="{Binding _citiesList}" SelectedItem="{Binding CityModel}" ItemDisplayBinding="{Binding CityName}"></Picker>
+
+            <Label Text="Odaberi Model automobila koji posjedujete"></Label>
+            <Picker ItemsSource="{Binding _modelsList}" SelectedItem="{Binding CarModel}" ItemDisplayBinding="{Binding CarModelName}"></Picker>
+
+            <Label Text="Email"></Label>
+            <Entry Text="{Binding Email}"></Entry>
+            <Label Text="Broj telefona"></Label>
+            <Entry Text="{Binding PhoneNumber}"></Entry>
+            <Label Text="Korisničko ime"></Label>
+            <Entry Text="{Binding Username}"></Entry>
+
+            <Label  Text="Lozinka"></Label>
+            <Entry Text="{Binding Password}" IsPassword="True"></Entry>
+
+            <Label  Text="Potvrda lozinke"></Label>
+            <Entry Text="{Binding PasswordConfirmation}" IsPassword="True"></Entry>
+
+            <Button       BackgroundColor="Transparent"
+                BorderColor="Transparent" Command="{Binding RegisterCommand}" HorizontalOptions="FillAndExpand" Font="Bold,17" Text="Registruj se"></Button>
+            <Button Clicked="Button_Clicked_Canceled" HorizontalOptions="FillAndExpand" Font="Bold,17" Text="Prekini registraciju"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

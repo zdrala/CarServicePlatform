@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.CreateRequestPage"
+             BackgroundColor="LightGray">
+    <ContentPage.BindingContext >
+        <vm:CreateRequestViewModel></vm:CreateRequestViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Margin="0,20,0,0">
+            <Label Margin="0,20,0,0"  Text="Podnošenje zahtjeva za servisiranjem" Font="Bold,24" HorizontalOptions="Center"></Label>
+            <StackLayout Margin="0,50,0,0" HorizontalOptions="Center">
+            <Label FontSize="22" BackgroundColor="Gray" TextColor="White">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding CarServiceName}" />
+                        <Span Text=" | "/>
+                        <Span Text="{Binding Street}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            </StackLayout>
+            <StackLayout Margin="0,50,0,0">
+                    <Label Text="Odaberi usluge za termin servisiranja" HorizontalOptions="Center" FontSize="21"></Label>
+                    <Picker ItemsSource="{Binding servicesList}" SelectedItem="{Binding ServiceModel}" ItemDisplayBinding="{Binding ServiceName}" ></Picker>
+                    <Button Command="{Binding AddServiceCommand}" Text="Dodaj uslugu na listu" BorderColor="Black" BorderWidth="2" BackgroundColor="Gray" TextColor="White"></Button>
+                </StackLayout>
+                <StackLayout Margin="0,20,0,0" HeightRequest="400" >
+                    <Label Text="Lista odabranih usluga:" HorizontalOptions="Center" Font="Bold,21"></Label>
+                    <ListView ItemsSource="{Binding SelectedServicesList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout HeightRequest="60">
+
+                                        <Label  Text="{Binding ServiceName}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="18" HorizontalOptions="CenterAndExpand"
+                                                VerticalOptions="Center"
+                                              TextColor="Black" />
+
+
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </StackLayout>
+                <Button Clicked="SendRequest_Clicked" Text="Podnesi zahtjev" HeightRequest="60" BackgroundColor="LightGreen" BorderColor="Black" BorderWidth="2"></Button>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

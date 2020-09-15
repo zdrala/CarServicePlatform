@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             xmlns:converters="clr-namespace:CarService.MobileApp.Converters"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.CarServiceDetailPage">
+    <ContentPage.BindingContext >
+        <vm:CarServiceDetailViewModel></vm:CarServiceDetailViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Label Font="Bold,18"  FontSize="Title" Text="Podaci o odabranom auto servisu" HorizontalOptions="Center"></Label>
+        <StackLayout Padding="10" Orientation="Horizontal">
+            
+            <StackLayout>
+                    <Image WidthRequest="250" HeightRequest="250" Source="{Binding Photo,Converter={StaticResource imgConv}}"></Image>
+
+                        <Label FontSize="Subtitle">Vlasnik:</Label>
+                    <Entry IsReadOnly="True" Text="{Binding CarService.Owner}" BackgroundColor="LightGray" ></Entry>
+
+                        <Label FontSize="Subtitle">Broj telefona:</Label>
+                    <Entry IsReadOnly="True" Text="{Binding CarService.PhoneNumber}" BackgroundColor="LightGray"></Entry>
+                </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="30,60,0,0">
+                        <Label FontSize="Subtitle">Auto servis:</Label>
+                        <Entry IsReadOnly="True" Text="{Binding CarService.CarServiceName}" BackgroundColor="LightGray"></Entry>
+
+                        <Label FontSize="Subtitle">Ulica:</Label>
+                        <Entry IsReadOnly="True" Text="{Binding CarService.Street}" BackgroundColor="LightGray"></Entry>
+
+            </StackLayout>
+        </StackLayout>
+                <Button   HeightRequest="80"    
+                BorderColor="Black" BorderWidth="2"  HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue" Text="Pregledaj listu usluga auto servisa" Font="Bold,17" Clicked="Clicked_LoadServices"></Button>
+                <Button    HeightRequest="80"   BackgroundColor="LightBlue"
+                BorderColor="Black" BorderWidth="2"   HorizontalOptions="FillAndExpand" Text="Postavi pitanje"  Font="Bold,17" Clicked="Clicked_MakeQuestion"></Button>
+                <Button    HeightRequest="80"   BackgroundColor="LightBlue"
+              HorizontalOptions="FillAndExpand" Text="Kreiraj zahtjev za termin servisiranja" Font="Bold,17" BorderColor="Black" BorderWidth="2" Clicked="Clicked_CreateRequest"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

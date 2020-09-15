@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             xmlns:converters="clr-namespace:CarService.MobileApp.Converters"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.SelectedOfferPartsPage">
+    <ContentPage.BindingContext >
+        <vm:SelectedOfferPartsViewModel></vm:SelectedOfferPartsViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="70" BackgroundColor="Gray">
+
+                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="Odabrani dijelovi sa ponude" Font="Bold,23"></Label>
+            </StackLayout>
+            <ListView ItemsSource="{Binding _selectedParts}" BackgroundColor="LightGray">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout  Orientation="Horizontal" VerticalOptions="Center">
+                                    <Image HeightRequest="90" WidthRequest="90" Source="{Binding Photo, Converter={StaticResource imgConv}}"></Image>
+                                    <Label VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding CarPartName}" />
+                                                <Span Text="|"/>
+                                                <Span Text="{Binding Quality}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" >
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Potrebna količina:" />
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding QuantityNeeded}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Ukupna cijena:" />
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding inTotal}" />
+                                                <Span Text=" KM"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+
+
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

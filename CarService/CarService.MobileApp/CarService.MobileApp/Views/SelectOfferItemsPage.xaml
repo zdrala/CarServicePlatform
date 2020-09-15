@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             xmlns:converters="clr-namespace:CarService.MobileApp.Converters"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.SelectOfferItemsPage">
+    <ContentPage.BindingContext >
+        <vm:SelectOfferItemsViewModel></vm:SelectOfferItemsViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Label Text="Pregled ponude s auto dijelovima" HorizontalOptions="Center"
+                   Font="Bold,23"></Label>
+            
+            <Label Margin="0,2,0,0" Text="Odaberite dio za sve kategorije sa ponude:" HorizontalOptions="Center"></Label>
+            <Picker ItemsSource="{Binding selectedPartsSubCategories_ForShow}" ItemDisplayBinding="{Binding SubCategoryName}" SelectedItem="{Binding SelectedSubCategory}" SelectedIndexChanged="Load_SubCategoryParts"></Picker>
+
+            <StackLayout>
+                <Label Text="Po kategoriji možete odabrati samo 1 auto dio" HorizontalOptions="Center" FontSize="17" ></Label>
+                <ListView ItemsSource="{Binding PartsForShow}" BackgroundColor="LightGray" HeightRequest="320" ItemSelected="PartSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Orientation="Horizontal">
+                                    <StackLayout  Orientation="Horizontal" VerticalOptions="Center">
+                                        <Image HeightRequest="85" WidthRequest="85" Source="{Binding Photo, Converter={StaticResource imgConv}}"></Image>
+                                        <Label VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding CarPartName}" />
+                                                    <Span Text="|"/>
+                                                    <Span Text="{Binding Quality}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" >
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Potrebna količina:" />
+                                                    <Span Text=" "/>
+                                                    <Span Text="{Binding QuantityNeeded}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Cijena po komadu:" />
+                                                    <Span Text=" "/>
+                                                    <Span Text="{Binding CarPartPrice}" />
+                                                    <Span Text=" KM"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Dijelovi koje ste odabrali sa ponude:" HorizontalOptions="Center" FontSize="17" ></Label>
+                <ListView ItemsSource="{Binding _selectedParts}" BackgroundColor="LightGray" HeightRequest="300">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Orientation="Horizontal">
+                                    <StackLayout  Orientation="Horizontal" VerticalOptions="Center">
+                                        <Image HeightRequest="75" WidthRequest="75" Source="{Binding Photo, Converter={StaticResource imgConv}}"></Image>
+                                        <Label VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding CarPartName}" />
+                                                    <Span Text="|"/>
+                                                    <Span Text="{Binding Quality}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" >
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Potrebna količina:" />
+                                                    <Span Text=" "/>
+                                                    <Span Text="{Binding QuantityNeeded}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Ukupna cijena:" />
+                                                    <Span Text=" "/>
+                                                    <Span Text="{Binding inTotal}" />
+                                                    <Span Text=" KM"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </StackLayout>
+            <Button Text="Potvrdi odabir dijelova i pošalji administratoru" BackgroundColor="LightGreen" BorderColor="Black" BorderWidth="2" Clicked="ChangeItems_ToSelected"></Button>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

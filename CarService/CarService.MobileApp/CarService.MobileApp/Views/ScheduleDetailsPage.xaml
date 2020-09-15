@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.ScheduleDetailsPage">
+    <ContentPage.BindingContext >
+        <vm:ScheduleDetailsVM></vm:ScheduleDetailsVM>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+
+            <StackLayout>
+
+                <Label BackgroundColor="LightGray" Text="Detalji odabranog termina" HorizontalOptions="Center" Font="Bold,23">
+                </Label>
+                <Label HorizontalOptions="Center" FontSize="20" Margin="0,10,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Auto servis:" />
+                            <Span Text=" "/>
+                            <Span Text="{Binding ScheduleModel.CarServiceName}" />
+       
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label HorizontalOptions="Center" FontSize="20" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Datum termina:" />
+                            <Span Text=" "/>
+                            <Span Text="{Binding ScheduleModel.Date}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label HorizontalOptions="Center" FontSize="20" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Status:" />
+                            <Span Text=" "/>
+                            <Span Text="{Binding ScheduleModel.Status}" Font="Bold,23"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="{Binding offerCreated_OrLocked}" Font="Bold,17" HorizontalOptions="Center"></Label>
+                <Button HeightRequest="60" IsVisible="{Binding buttonForSelect_isVisible}" BackgroundColor="LightBlue" Text="Odaberi dijelove sa ponude" BorderColor="Black" BorderWidth="2" Clicked="SelectOffersParts"></Button>
+                <Button HeightRequest="60" IsVisible="{Binding buttonForCheckSelectedParts_isVisible}" BackgroundColor="LightGreen" Text="Prikaži odabrane dijelove" BorderColor="Black" BorderWidth="2" Clicked="ShowSelectedParts"></Button>
+
+                <Button  HeightRequest="60" Text="Prikaži listu odabranih usluga za termin" BorderColor="Black" BorderWidth="2" Clicked="LoadRequestedServices"></Button>
+
+            </StackLayout>
+
+
+
+
+            <StackLayout IsVisible="{Binding ShowTotalPrice}">
+                
+                
+                <Label FontSize="22" HorizontalOptions="Center" IsVisible="{Binding ShowTotalPrice}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Ukupna cijena termina iznosi:" />
+                            <Span Text=" "/>
+                            <Span Text="{Binding UkupnaCijena}" />
+                            <Span Text=" KM" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label FontSize="22" HorizontalOptions="Center" IsVisible="{Binding ShowTotalPrice}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Plaćeno:" />
+                            <Span Text=" "/>
+                            <Span Text="{Binding ScheduleVM.isPaidString}" FontAttributes="Bold" />
+
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="U cijenu su uračunate cijene usluga i cijene auto dijelova" HorizontalOptions="CenterAndExpand" FontSize="16" FontAttributes="Bold"></Label>
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="{Binding RatingText}" HorizontalOptions="Center" Font="Bold,17"></Label>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <ImageButton IsVisible="{Binding ShowImageButtons_ForRate}" WidthRequest="70" HeightRequest="70" Source="ButtonLIKE.png" Clicked="Rate_Positive"></ImageButton>
+                    <ImageButton IsVisible="{Binding ShowImageButtons_ForRate}" WidthRequest="70" HeightRequest="70" Source="ButtonDISLIKE.png" Clicked="Rate_Negative"></ImageButton>
+
+                    <ImageButton IsVisible="{Binding ShowRatedButtonImagePositive}" WidthRequest="70" HeightRequest="70" Source="ButtonLIKE.png"></ImageButton>
+                    <ImageButton IsVisible="{Binding ShowRatedButtonImageNegative}" WidthRequest="70" HeightRequest="70" Source="ButtonDISLIKE.png"></ImageButton>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding ShowTicketStack}" Margin="0,30,0,0">
+                <Label Text="Administrator vam je poslao online račun" HorizontalOptions="Center" Font="Bold,17"></Label>
+                <Button HeightRequest="60" Text="Detalji računa" HorizontalOptions="CenterAndExpand" Clicked="TicketDetails"></Button>
+                <Button HeightRequest="60" BackgroundColor="LightBlue" Text="Plati Online Račun" HorizontalOptions="CenterAndExpand" Clicked="PayTicket"></Button>
+                
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

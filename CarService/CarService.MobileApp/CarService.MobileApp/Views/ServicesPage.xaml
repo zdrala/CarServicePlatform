@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.ServicesPage">
+    <ContentPage.BindingContext >
+        <vm:ServicesViewModel></vm:ServicesViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="100" BackgroundColor="LightGray" >
+                <Label Text="Lista usluga koje pruža" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="25" HorizontalOptions="Center"/>
+                <Entry IsReadOnly="true" Text="{Binding CarServiceName}" HorizontalOptions="Center"></Entry>
+            </StackLayout>
+            <ListView SeparatorColor="Black" ItemsSource="{Binding ServicesList}" BackgroundColor="LightGray" >
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                    
+                                
+                                <StackLayout Orientation="Vertical"  Grid.Row="1" HeightRequest="80">
+                                    <Label Text="{Binding ServiceName}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="20" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Street}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="18" HorizontalOptions="Center">
+                                           <Label.FormattedText>
+                                              <FormattedString>
+                                                 <Span Text="Cijena usluge:" />
+                                                 <Span Text="  "/>
+                                                 <Span Text="{Binding ServicePrice}" />
+                                                 <Span Text=" KM" />
+                                        </FormattedString>
+                                           </Label.FormattedText>
+                                     </Label>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

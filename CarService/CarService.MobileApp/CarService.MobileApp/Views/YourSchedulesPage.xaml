@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.YourSchedulesPage"
+             BackgroundColor="LightGray">
+    <ContentPage.BindingContext >
+        <vm:YourSchedulesViewModel></vm:YourSchedulesViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <StackLayout HeightRequest="250">
+                <Label Text="Vaš aktivni termin:" Font="Bold,23" HorizontalOptions="Center"></Label>
+                <ListView ItemsSource="{Binding userActiveScheduleList}" ItemSelected="SelectSchedule">
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="0,15,0,0" BackgroundColor="Gray">
+                                    <!--<StackLayout Padding="20,0,0,0" >
+                                        <Image HeightRequest="150" WidthRequest="170" Source="{Binding Photo, Converter={StaticResource imgConv}}"></Image>
+                                    </StackLayout>-->
+
+                                    <Label HorizontalOptions="Center" FontSize="20">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Auto servis:" />
+                                                <Span Text="  "/>
+                                                <Span Text="{Binding CarServiceName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label HorizontalOptions="Center" FontSize="20">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Datum termina:" />
+                                                <Span Text="  "/>
+                                                <Span Text="{Binding Date}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackLayout>
+            <StackLayout >
+                <Label Text="Vaši završeni termini:" Font="Bold,23" HorizontalOptions="Center"></Label>
+                    <ListView ItemsSource="{Binding userFinishedSchedulesList}" ItemSelected="SelectFinishedSchedule">
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="0,15,0,0" BackgroundColor="Gray">
+                                    <!--<StackLayout Padding="20,0,0,0" >
+                                        <Image HeightRequest="150" WidthRequest="170" Source="{Binding Photo, Converter={StaticResource imgConv}}"></Image>
+                                    </StackLayout>-->
+
+                                    <Label HorizontalOptions="Center" FontSize="20">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Auto servis:" />
+                                                <Span Text="  "/>
+                                                <Span Text="{Binding CarServiceName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label HorizontalOptions="Center" FontSize="20">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Datum termina:" />
+                                                <Span Text="  "/>
+                                                <Span Text="{Binding Date}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

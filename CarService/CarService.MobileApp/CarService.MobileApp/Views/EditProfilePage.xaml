@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.EditProfilePage"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext >
+        <vm:EditProfileViewModel></vm:EditProfileViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Padding="10" VerticalOptions="CenterAndExpand">
+                <Label Text="Vaš profil u eMechanic" FontAttributes="Bold"  FontSize="Title" HorizontalOptions="CenterAndExpand"></Label>
+                <Label Text="Ime"></Label>
+                <Entry Text="{Binding FirstName}" x:Name="FirstName"></Entry>
+                <Label Text="Prezime"></Label>
+            <Entry Text="{Binding LastName}" x:Name="LastName"></Entry>
+                <Label Text="Datum rođenja"></Label>
+                <DatePicker Date="{Binding DateOfBirth}" Format="dd-MM-yyyy" x:Name="DateOfBirth"></DatePicker>
+                <Label Text="Vaš grad prebivališta:"></Label>
+            <Label Text="{Binding CityString}" x:Name="CityString"></Label>
+                <Picker ItemsSource="{Binding _citiesList}" SelectedItem="{Binding CityModel}" ItemDisplayBinding="{Binding CityName}" ></Picker>
+            
+            <Label Text="Vaš automobil:"></Label>
+            <Label Text="{Binding CarString}" x:Name="CarString"></Label>
+                <Picker ItemsSource="{Binding _modelsList}" SelectedItem="{Binding CarModel}" ItemDisplayBinding="{Binding CarModelName}" x:Name="CarModel"></Picker>
+
+                <Label Text="Email"></Label>
+                <Entry Text="{Binding Email}" x:Name="Email"></Entry>
+                <Label Text="Broj telefona"></Label>
+                <Entry Text="{Binding PhoneNumber}" x:Name="PhoneNumber"></Entry>
+                <Label Text="Korisničko ime"></Label>
+                <Entry Text="{Binding Username}" x:Name="Username"></Entry>
+
+                <Label  Text="Nova Lozinka(Opcionalno)"></Label>
+                <Entry Text="{Binding NewPassword}" IsPassword="True"></Entry>
+
+                <Label  Text="Potvrda nove lozinke"></Label>
+                <Entry Text="{Binding NewPasswordConfirmation}" IsPassword="True"></Entry>
+
+                <Button       BackgroundColor="Transparent"
+                BorderColor="Transparent" Command="{Binding SaveChangesCommand}" HorizontalOptions="FillAndExpand" Text="Spremi izmijene" Font="Bold,17"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

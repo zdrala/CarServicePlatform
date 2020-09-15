@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.LoginPage">
+    <ContentPage.BindingContext >
+        <vm:LoginViewModel></vm:LoginViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" Padding="20" VerticalOptions="CenterAndExpand">
+            <StackLayout Margin="0,50,0,0">
+                <Image Source="logo_eMechanic.png" HeightRequest="270" WidthRequest="270" HorizontalOptions="Center"></Image>
+            </StackLayout>
+            <Label  Text="Dobro došli u eMechanic" FontSize="Title" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+            <Label  Text="Korisničko ime">
+            </Label>
+            <Entry x:Name="KorisnickoIme" Text="{Binding Username}"></Entry>
+
+            <Label  Text="Lozinka"></Label>
+            <Entry Text="{Binding Password}" IsPassword="True"></Entry>
+
+            <Button Command="{Binding LoginCommand}"  HorizontalOptions="CenterAndExpand" Text="Prijava" Font="Bold,17"></Button>
+            <Button   HorizontalOptions="CenterAndExpand" Text="Registruj se" Clicked="Register_Click" Font="Bold,17"></Button>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

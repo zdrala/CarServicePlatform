@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="CarService.MobileApp.Views.CommunicationPage">
+    <ContentPage.BindingContext >
+        <vm:CommunicationViewModel></vm:CommunicationViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <StackLayout BackgroundColor="Gray">
+            <StackLayout HeightRequest="80" HorizontalOptions="Center" BackgroundColor="Gray"   >
+            <Label HorizontalOptions="Center" TextColor="Black" Text="Postavi pitanje administratoru auto servisa"
+              VerticalOptions="CenterAndExpand"
+                   Font="Bold,21"/>
+            </StackLayout>
+        </StackLayout>
+
+
+            <StackLayout>
+                <Label FontSize="22" HorizontalOptions="Center"  TextColor="Black">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Vaša pitanja za:" />
+                        <Span Text="  "/>
+                        <Span Font="Bold,23" Text="{Binding CsName}" />
+                    </FormattedString>
+                </Label.FormattedText>
+                </Label>
+                <ListView ItemsSource="{Binding userCommunications}" HeightRequest="465" BackgroundColor="LightGray">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <StackLayout Orientation="Vertical" BackgroundColor="Gray">
+                                    <StackLayout Orientation="Vertical" Grid.Row="1">
+                                    <Label FontSize="19" HorizontalOptions="Center" TextColor="White">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Vaše pitanje    |   " />
+                                            <Span Text=""/>
+                                                <Span Text="{Binding DateOfMessage, StringFormat='{0:dd.MM.yyyy hh:mm}'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                    </Label>
+                                    <Entry IsReadOnly="True" Text="{Binding Content}" HeightRequest="80"></Entry>
+                                </StackLayout>
+                                
+                  
+                                <StackLayout Orientation="Vertical">
+                                        <Label FontSize="19" HorizontalOptions="Center" TextColor="White">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Odgovor administratora" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Entry IsReadOnly="True" Text="{Binding AnswerContent}" HeightRequest="80"></Entry>
+
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+      
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Vaše novo pitanje"  HorizontalOptions="Center" FontSize="22" TextColor="Black"></Label>
+                <Entry HeightRequest="80" Text="{Binding QuestionContent}"></Entry>
+                <Button Text="Pošalji pitanje" BorderColor="Black" BorderWidth="2" BackgroundColor="LightBlue" Clicked="SendQuestion"></Button>
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

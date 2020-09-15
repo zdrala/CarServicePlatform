@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CarService.MobileApp.ViewModels"
+             mc:Ignorable="d"
+            
+             x:Class="CarService.MobileApp.Views.HomePage">
+    <ContentPage.BindingContext >
+        <vm:HomeViewModel></vm:HomeViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Label FontSize="25" HorizontalOptions="Center" Margin="0,0,0,10" FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Dobrodošli u aplikaciju eMechanic"/>
+                     
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Image HeightRequest="270" WidthRequest="270" HorizontalOptions="Center" x:Name="imgDisp" ></Image>
+            <Button BorderColor="Black" HeightRequest="60" BorderWidth="2" Text="Pretraga auto servisa" Clicked="LoadCarServices"></Button>
+            <Button BorderColor="Black" BorderWidth="2" HeightRequest="60" Text="Vaši termini" Clicked="LoadSchedules"></Button>
+            <Label VerticalOptions="EndAndExpand" HorizontalOptions="Center">© eMechanic</Label>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
