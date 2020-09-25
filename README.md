@@ -13,5 +13,7 @@ Xamarin mobile application.
 1. Clone repository
 2. Install docker
 3. Within the folder where the project is located, enter the following commands on the CMD:
+
    docker-compose build
+   
    docker-compose up
