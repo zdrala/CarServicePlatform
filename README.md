@@ -10,7 +10,6 @@ REST API C# ASP.NET Core application,
 Windows forms application,
 Xamarin mobile application.
 
-Docker will be used to deliver the application.
 # API launching
 1. Clone repository
 2. Install docker
